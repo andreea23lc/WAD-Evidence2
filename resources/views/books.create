@@ -1,0 +1,17 @@
+@extends('layouts.app')
+
+@section('content')
+    <h2>Add New Book</h2>
+    <form action="{{ route('books.store') }}" method="POST">
+        @csrf
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="author_name">Author Name:</label>
+        <input type="text" id="author_name" name="author_name" required>
+        <label for="isbn">ISBN:</label>
+        <input type="text" id="isbn" name="isbn" required>
+        <label for="published_year">Published Year:</label>
+        <input type="number" id="published_year" name="published_year" required>
+        <button type="submit">Add Book</button>
+    </form>
+@endsection

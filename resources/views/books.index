@@ -1,0 +1,35 @@
+@extends('layouts.app')
+
+@section('content')
+    <h2>All Books</h2>
+    <a href="{{ route('books.create') }}">Add New Book</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Published Year</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($books as $book)
+                <tr>
+                    <td>{{ $book->title }}</td>
+                    <td>{{ $book->author_name }}</td>
+                    <td>{{ $book->isbn }}</td>
+                    <td>{{ $book->published_year }}</td>
+                    <td>
+                        <a href="{{ route('books.edit', $book->id) }}">Edit</a>
+                        <form action="{{ route('books.destroy', $book->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endsection
